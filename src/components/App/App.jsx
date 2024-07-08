@@ -50,7 +50,7 @@ function App() {
         <Footer />
       </div>
       <ModalWithForm
-        title="new garment"
+        title="New Garment"
         buttonText="Add garment"
         isOpen={activeModal === "add-garment"}
         onClose={closeActiveModal}
