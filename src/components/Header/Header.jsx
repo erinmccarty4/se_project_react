@@ -1,16 +1,10 @@
-import { Link } from "react-router-dom";
 import "./header.css";
 import logo from "../../assets/logo.svg";
 import avatar from "../../assets/avatar.png";
+import { Link } from "react-router-dom";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 
-function Header({
-  handleAddClick,
-  weatherData,
-  handleOpenMenu,
-  handleCloseMenu,
-  openMenu,
-}) {
+function Header({ handleAddClick, weatherData }) {
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
@@ -19,39 +13,30 @@ function Header({
   return (
     <header className="header">
       <Link to="/">
-        <img src={logo} alt="wtwr logo" className="header__logo" />
+        <img className="header__logo" src={logo} alt="header" />
       </Link>
       <p className="header__date-and-location">
-        {currentDate}, {weatherData.city}
+        {currentDate} , {weatherData.city}
       </p>
-      <nav
-        className={`header__menu ${openMenu === true && "header__menu-mobile"}`}
+      <ToggleSwitch />
+      <button
+        onClick={handleAddClick}
+        type="button"
+        className="header__add-clothes-btn"
       >
-        <ToggleSwitch />
-        <button
-          className="header__menu-close-button"
-          type="button"
-          onClick={handleCloseMenu}
-        ></button>
-        <button
-          className="header__add-clothes-button"
-          type="button"
-          onClick={handleAddClick}
-        >
-          + Add clothes
-        </button>
-        <Link to="/profile" className="header__link">
-          <div className="header__user-container">
-            <p className="header__username">Terrence Tegegne</p>
-            <img
-              src={avatar}
-              alt="Terrance Tegegne"
-              className="header__avatar"
-            />
-          </div>
+        + Add Clothes
+      </button>
+
+      <div className="header__user-container">
+        <Link className="header__link" to="/profile">
+          <p className="header__username">Terrence Tegegne</p>
+          <img
+            src={avatar}
+            alt={"Terrence Tegegne"}
+            className="header__avatar"
+          />
         </Link>
-      </nav>
-      <button className="header__menu-button" onClick={handleOpenMenu}></button>
+      </div>
     </header>
   );
 }

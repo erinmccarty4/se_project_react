@@ -8,7 +8,9 @@ const processResponse = (res) => {
 };
 
 function getItems() {
-  return fetch(`${baseUrl}/items`).then(processResponse);
+  return fetch(`${baseUrl}/items`,{
+    headers: { "Content-Type": "application/json" }
+  }).then(processResponse);
 }
 
 function addItem(item) {

@@ -86,7 +86,7 @@ function App() {
   }, []);
 
   return (
-    <BrowserRouter basename="/se_project_react">
+   
       <div className="app">
         <CurrentTemperatureUnitContext.Provider
           value={{ currentTemperatureUnit, handleToggleSwitchChange }}
@@ -136,7 +136,7 @@ function App() {
           )}
         </CurrentTemperatureUnitContext.Provider>
       </div>
-    </BrowserRouter>
+   
   );
 }
 
