@@ -131,6 +131,12 @@
       "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Beanie.png",
       "weather": "warm",
       "_id": 21
+    },
+    {
+      "name": "Beanie",
+      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Beanie.png",
+      "weather": "",
+      "_id": 22
     }
   ]
 }
