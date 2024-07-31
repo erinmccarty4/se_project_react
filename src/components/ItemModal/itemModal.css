@@ -1,25 +1,59 @@
-.modal__content_type_image {
-  padding: 0;
-}
 
 .modal__image {
-  height: 100%;
   width: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  height: 498px;
+}
+
+.modal__close {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  right: 24px;
+  top: 24px;
+  cursor: pointer;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: none;
+  background-color: transparent;
+}
+
+.modal__footer {
+  display: flex;
+  padding: 0 32px;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-top: 20px;
 }
 
 .modal__caption {
-    font-family: Cabinet Grotesk;
-    font-size: 20px;
-    font-weight: 700;
-    line-height: 24px;
-    text-align: left;
-    margin: 20px 0 0 32px;
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+  margin-bottom: 12px;
 }
 
 .modal__weather {
-  font-family: "CabinetGrotesk-Medium";
-  font-size: 20px;
-  line-height: 24px;
   margin: 0;
-  padding: 20px 0px 32px 32px;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+  margin-bottom: 32px;
+}
+
+.modal__delete-btn {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+  text-align: left;
+  color: #ff4d00;
+  border: 0;
+  background-color: #fff;
+  cursor: pointer;
+  padding: 0;
 }

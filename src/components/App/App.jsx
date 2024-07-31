@@ -30,13 +30,11 @@ function App() {
     setSelectedCard(card);
   };
 
-  const onAddItem = (values, onDone) => {
-    //first add item to the server, then to the dom
-    return addItem(values)
-      .then((item) => {
-        setClothingItems([item, ...clothingItems]);
+  const onAddItem = (item) => {
+    return addItem(item)
+      .then((newItem) => {
+        setClothingItems((clothingItems) => [newItem, ...clothingItems]);
         closeActiveModal();
-        onDone();
       })
       .catch(console.error);
   };
@@ -86,57 +84,56 @@ function App() {
   }, []);
 
   return (
-   
-      <div className="app">
-        <CurrentTemperatureUnitContext.Provider
-          value={{ currentTemperatureUnit, handleToggleSwitchChange }}
-        >
-          <div className="app__content">
-            <Header handleAddClick={handleAddClick} weatherData={weatherData} />
+    <div className="app">
+      <CurrentTemperatureUnitContext.Provider
+        value={{ currentTemperatureUnit, handleToggleSwitchChange }}
+      >
+        <div className="app__content">
+          <Header handleAddClick={handleAddClick} weatherData={weatherData} />
 
-            <Routes>
-              <Route
-                path="/"
-                element={
-                  <Main
-                    weatherData={weatherData}
-                    onCardClick={handleCardClick}
-                    clothingItems={clothingItems}
-                  />
-                }
-              />
-              <Route
-                path="/profile"
-                element={
-                  <Profile
-                    clothingItems={clothingItems}
-                    onCardClick={handleCardClick}
-                    handleAddClick={handleAddClick}
-                  />
-                }
-              />
-            </Routes>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <Main
+                  weatherData={weatherData}
+                  onCardClick={handleCardClick}
+                  clothingItems={clothingItems}
+                />
+              }
+            />
+            <Route
+              path="/profile"
+              element={
+                <Profile
+                  weatherData={weatherData}
+                  onCardClick={handleCardClick}
+                  handleAddClick={handleAddClick}
+                  clothingItems={clothingItems}
+                />
+              }
+            />
+          </Routes>
 
-            <Footer />
-          </div>
-          {activeModal === "add-garment" && (
-            <AddItemModal
-              handleCloseModal={closeActiveModal}
-              isOpen={activeModal === "add-garment"}
-              onAddItem={onAddItem}
-            />
-          )}
-          {activeModal === "preview" && (
-            <ItemModal
-              activeModal={activeModal}
-              card={selectedCard}
-              onClose={closeActiveModal}
-              handleDeleteItem={handleDeleteItem}
-            />
-          )}
-        </CurrentTemperatureUnitContext.Provider>
-      </div>
-   
+          <Footer />
+        </div>
+        {activeModal === "add-garment" && (
+          <AddItemModal
+            handleCloseModal={closeActiveModal}
+            isOpen={activeModal === "add-garment"}
+            onAddItem={onAddItem}
+          />
+        )}
+        {activeModal === "preview" && (
+          <ItemModal
+            activeModal={activeModal}
+            card={selectedCard}
+            onClose={closeActiveModal}
+            onDelete={handleDeleteItem}
+          />
+        )}
+      </CurrentTemperatureUnitContext.Provider>
+    </div>
   );
 }
 
