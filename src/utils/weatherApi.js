@@ -1,60 +1,37 @@
+import { processResponse } from './api.js';
+
+// Define the request function if not already defined in api.js:
 function request(url, options) {
-  return fetch(url, options).then(processResponse);
+    return fetch(url, options).then(processResponse);
 }
 
-// Replace the fetch calls with the request function
-function getWeather(city) {
-  return request(`https://api.weather.com/v3/wx/conditions/current?city=${city}`, {
-    headers: { "Content-Type": "application/json" }
-  });
-}
+export const getWeather = ({ latitude, longitude, APIkey }) => {
+  return request(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=imperial&appid=${APIkey}`, {});
+};
 
-function addWeather(weatherData) {
-  return request('https://api.weather.com/v3/wx/observations/current', {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(weatherData)
-  });
-}
+// (Rest of the weatherApi.js code remains unchanged)
 
-function deleteWeather(weatherId) {
-  return request(`https://api.weather.com/v3/wx/observations/current/${weatherId}`, {
-    method: "DELETE",
-    headers: { "Content-Type": "application/json" }
-  });
-}
+export const filterWeatherData = (data) => {
+  const result = {};
+  result.city = data.name;
+  result.temp = {
+    F: Math.round(data.main.temp),
+    C: Math.round(((data.main.temp - 32) * 5) / 9),
+  };
+  result.type = getWeatherType(result.temp.F);
+  result.condition = data.weather[0].main.toLowerCase();
+  result.isDay = isDay(data.sys, Date.now());
+  return result;
+};
 
-export { getWeather, addWeather, deleteWeather };
+const isDay = ({ sunrise, sunset }, now) => {
+  return sunrise * 1000 < now && now < sunset * 1000;
+};
 
-// export const getWeather = ({ latitude, longitude }, APIkey) => {
-//   return fetch(
-//     `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=imperial&appid=${APIkey}`
-//   ).then(processResponse);
-// };
-
-// export const filterWeatherData = (data) => {
-//   const result = {};
-//   result.city = data.name;
-//   result.temp = {
-//     F: Math.round(data.main.temp),
-//     C: Math.round(((data.main.temp - 32) * 5) / 9),
-//   };
-//   result.type = getWeatherType(result.temp.F);
-//   result.condition = data.weather[0].main.toLowerCase();
-//   result.isDay = isDay(data.sys, Date.now());
-//   return result;
-// };
-
-// const isDay = ({ sunrise, sunset }, now) => {
-//   return sunrise * 1000 < now && now < sunset * 1000;
-// };
-
-// const getWeatherType = (temperature) => {
-//   if (temperature >= 86) {
-//     return "hot";
-//   } else if (temperature >= 66) {
-//     return "warm";
-//   } else {
-//     return "cold";
-//   }
-// };
+const getWeatherType = (temperature) => {
+  // Example function logic; replace with your own logic
+  if (temperature > 80) return 'hot';
+  if (temperature > 65) return 'warm';
+  if (temperature > 50) return 'cool';
+  return 'cold';
+};
