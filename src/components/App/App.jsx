@@ -30,14 +30,15 @@ function App() {
     setSelectedCard(card);
   };
 
-  const onAddItem = (item) => {
-    return addItem(item)
-      .then((newItem) => {
-        setClothingItems((clothingItems) => [newItem, ...clothingItems]);
-        closeActiveModal();
-      })
-      .catch(console.error);
-  };
+const onAddItem = (item, resetForm) => {
+  return addItem(item)
+    .then((newItem) => {
+      setClothingItems((clothingItems) => [newItem, ...clothingItems]);
+      closeActiveModal();
+      resetForm();  // Clear the inputs after success 
+    })
+    .catch(console.error);
+};
 
   const handleDeleteItem = (id) => {
     return deleteItem(id)
