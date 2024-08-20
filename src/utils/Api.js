@@ -7,10 +7,14 @@ const processResponse = (res) => {
   return Promise.reject(`Error: ${res.status}`);
 };
 
+  function request(url, options) {
+    return request(url, options).then(processResponse)
+  }
+
 function getItems() {
   return fetch(`${baseUrl}/items`,{
     headers: { "Content-Type": "application/json" }
-  }).then(processResponse);
+  });
 }
 
 function addItem(item) {
@@ -18,14 +22,14 @@ function addItem(item) {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(item),
-  }).then(processResponse);
+  });
 }
 
 function deleteItem(id) {
   return fetch(`${baseUrl}/items/${id}`, {
     method: "DELETE",
     headers: { "Content-Type": "application/json" },
-  }).then(processResponse);
+  });
 }
 
 export { getItems, addItem, deleteItem };
