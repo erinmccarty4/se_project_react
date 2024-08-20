@@ -35,10 +35,13 @@ const onAddItem = (item, resetForm) => {
     .then((newItem) => {
       setClothingItems((clothingItems) => [newItem, ...clothingItems]);
       closeActiveModal();
-      resetForm();  // Clear the inputs after success 
+      resetForm(); // Clear the inputs after success
     })
     .catch(console.error);
 };
+
+// Pass onAddItem to the component where it's used
+<AddItemModal onAddItem={onAddItem} />
 
   const handleDeleteItem = (id) => {
     return deleteItem(id)
