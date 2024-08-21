@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { processResponse } from "./apiHelpers.js";
 
 // Define the request function
@@ -11,6 +12,20 @@ export const getWeather = ({ latitude, longitude, APIkey }) => {
     {}
   );
 };
+=======
+import { processResponse } from './api.js';
+
+// Define the request function if not already defined in api.js:
+function request(url, options) {
+    return fetch(url, options).then(processResponse);
+}
+
+export const getWeather = ({ latitude, longitude, APIkey }) => {
+  return request(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=imperial&appid=${APIkey}`, {});
+};
+
+// (Rest of the weatherApi.js code remains unchanged)
+>>>>>>> f6022f653722bbe5faaad76f1f9530987d53f0c3
 
 // (Rest of the weatherApi.js code remains unchanged)
 export const filterWeatherData = (data) => {
@@ -31,8 +46,16 @@ const isDay = ({ sunrise, sunset }, now) => {
 };
 
 const getWeatherType = (temperature) => {
+<<<<<<< HEAD
   if (temperature > 80) return "hot";
   if (temperature > 65) return "warm";
   if (temperature > 50) return "cool";
   return "cold";
+=======
+  // Example function logic; replace with your own logic
+  if (temperature > 80) return 'hot';
+  if (temperature > 65) return 'warm';
+  if (temperature > 50) return 'cool';
+  return 'cold';
+>>>>>>> f6022f653722bbe5faaad76f1f9530987d53f0c3
 };

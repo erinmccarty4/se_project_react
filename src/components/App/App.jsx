@@ -30,6 +30,7 @@ function App() {
     setSelectedCard(card);
   };
 
+<<<<<<< HEAD
   const onAddItem = (item, resetForm) => {
     return addItem(item)
       .then((newItem) => {
@@ -39,6 +40,20 @@ function App() {
       })
       .catch(console.error);
   };
+=======
+const onAddItem = (item, resetForm) => {
+  return addItem(item)
+    .then((newItem) => {
+      setClothingItems((clothingItems) => [newItem, ...clothingItems]);
+      closeActiveModal();
+      resetForm(); // Clear the inputs after success
+    })
+    .catch(console.error);
+};
+
+// Pass onAddItem to the component where it's used
+<AddItemModal onAddItem={onAddItem} />
+>>>>>>> f6022f653722bbe5faaad76f1f9530987d53f0c3
 
   // Pass onAddItem to the component where it's used
   <AddItemModal onAddItem={onAddItem} />;

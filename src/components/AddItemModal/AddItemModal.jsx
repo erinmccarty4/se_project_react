@@ -1,7 +1,14 @@
+<<<<<<< HEAD
 import React, { useState } from "react";
 
 const AddItemModal = ({ onAddItem }) => {
   const initialFormValues = { name: "", description: "" };
+=======
+import React, { useState } from 'react';
+
+const AddItemModal = ({ onAddItem }) => {
+  const initialFormValues = { name: '', description: '' };
+>>>>>>> f6022f653722bbe5faaad76f1f9530987d53f0c3
   const [formValues, setFormValues] = useState(initialFormValues);
 
   const handleFormSubmit = (event) => {
@@ -9,12 +16,17 @@ const AddItemModal = ({ onAddItem }) => {
     const item = { name: formValues.name, description: formValues.description };
 
     onAddItem(item, () => {
+<<<<<<< HEAD
       setFormValues(initialFormValues); // Clear the form inputs
+=======
+      setFormValues(initialFormValues);  // Clear the form inputs
+>>>>>>> f6022f653722bbe5faaad76f1f9530987d53f0c3
     });
   };
 
   return (
     <form onSubmit={handleFormSubmit}>
+<<<<<<< HEAD
       <input
         type="text"
         value={formValues.name}
@@ -27,6 +39,18 @@ const AddItemModal = ({ onAddItem }) => {
         onChange={(e) =>
           setFormValues({ ...formValues, description: e.target.value })
         }
+=======
+      <input 
+        type="text" 
+        value={formValues.name} 
+        onChange={(e) => setFormValues({ ...formValues, name: e.target.value })} 
+        placeholder="Name"
+      />
+      <input 
+        type="text" 
+        value={formValues.description} 
+        onChange={(e) => setFormValues({ ...formValues, description: e.target.value })} 
+>>>>>>> f6022f653722bbe5faaad76f1f9530987d53f0c3
         placeholder="Description"
       />
       <button type="submit">Add Item</button>
@@ -36,6 +60,10 @@ const AddItemModal = ({ onAddItem }) => {
 
 export default AddItemModal;
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> f6022f653722bbe5faaad76f1f9530987d53f0c3
 // import React, { useState } from "react";
 // import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
