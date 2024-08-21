@@ -8,11 +8,11 @@ import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Profile from "../Profile/Profile";
 import ItemModal from "../ItemModal/ItemModal";
-import { getWeather, filterWeatherData } from "../../utils/weatherApi";
+import { getWeather, filterWeatherData } from "../../utils/weatherApi.js";
 import Footer from "../Footer/Footer";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 import AddItemModal from "../AddItemModal/AddItemModal";
-import { getItems, deleteItem, addItem } from "../../utils/Api";
+import { getItems, addItem, deleteItem } from "../../utils/Api.js";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -30,14 +30,18 @@ function App() {
     setSelectedCard(card);
   };
 
-  const onAddItem = (item) => {
+  const onAddItem = (item, resetForm) => {
     return addItem(item)
       .then((newItem) => {
         setClothingItems((clothingItems) => [newItem, ...clothingItems]);
         closeActiveModal();
+        resetForm(); // Clear the inputs after success
       })
       .catch(console.error);
   };
+
+  // Pass onAddItem to the component where it's used
+  <AddItemModal onAddItem={onAddItem} />;
 
   const handleDeleteItem = (id) => {
     return deleteItem(id)

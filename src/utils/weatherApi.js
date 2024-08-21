@@ -1,16 +1,18 @@
-const processResponse = (res) => {
-  if (res.ok) {
-    return res.json();
-  }
-  return Promise.reject(`Error: ${res.status}`);
+import { processResponse } from "./apiHelpers.js";
+
+// Define the request function
+function request(url, options) {
+  return fetch(url, options).then(processResponse);
+}
+
+export const getWeather = ({ latitude, longitude, APIkey }) => {
+  return request(
+    `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=imperial&appid=${APIkey}`,
+    {}
+  );
 };
 
-export const getWeather = ({ latitude, longitude }, APIkey) => {
-  return fetch(
-    `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=imperial&appid=${APIkey}`
-  ).then(processResponse);
-};
-
+// (Rest of the weatherApi.js code remains unchanged)
 export const filterWeatherData = (data) => {
   const result = {};
   result.city = data.name;
@@ -29,11 +31,8 @@ const isDay = ({ sunrise, sunset }, now) => {
 };
 
 const getWeatherType = (temperature) => {
-  if (temperature >= 86) {
-    return "hot";
-  } else if (temperature >= 66) {
-    return "warm";
-  } else {
-    return "cold";
-  }
+  if (temperature > 80) return "hot";
+  if (temperature > 65) return "warm";
+  if (temperature > 50) return "cool";
+  return "cold";
 };
