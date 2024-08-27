@@ -12,7 +12,7 @@ import { getWeather, filterWeatherData } from "../../utils/weatherApi.js";
 import Footer from "../Footer/Footer";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 import AddItemModal from "../AddItemModal/AddItemModal";
-import { getItems, addItem, deleteItem } from "../../utils/Api.js";
+// import { getItems, addItem, deleteItem } from "../../utils/Api.js";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -30,33 +30,18 @@ function App() {
     setSelectedCard(card);
   };
 
-<<<<<<< HEAD
-  const onAddItem = (item, resetForm) => {
-    return addItem(item)
+  const handleAddItem = (name, weather, imageUrl, resetInputs) => {
+    setIsLoading(true);
+    api
+      .addItem(name, weather, imageUrl)
       .then((newItem) => {
-        setClothingItems((clothingItems) => [newItem, ...clothingItems]);
-        closeActiveModal();
-        resetForm(); // Clear the inputs after success
+        setClothingItems([newItem, ...clothingItems]);
+        onClose();
+        resetInputs();
+        setIsLoading(false);
       })
-      .catch(console.error);
+      .catch((err) => console.log(err));
   };
-=======
-const onAddItem = (item, resetForm) => {
-  return addItem(item)
-    .then((newItem) => {
-      setClothingItems((clothingItems) => [newItem, ...clothingItems]);
-      closeActiveModal();
-      resetForm(); // Clear the inputs after success
-    })
-    .catch(console.error);
-};
-
-// Pass onAddItem to the component where it's used
-<AddItemModal onAddItem={onAddItem} />
->>>>>>> f6022f653722bbe5faaad76f1f9530987d53f0c3
-
-  // Pass onAddItem to the component where it's used
-  <AddItemModal onAddItem={onAddItem} />;
 
   const handleDeleteItem = (id) => {
     return deleteItem(id)

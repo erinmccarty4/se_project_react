@@ -1,61 +1,36 @@
-<<<<<<< HEAD
-import { processResponse } from "./apiHelpers.js";
-
-// Define the request function
-function request(url, options) {
-  return fetch(url, options).then(processResponse);
-}
-
-export const getWeather = ({ latitude, longitude, APIkey }) => {
-  return request(
-    `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=imperial&appid=${APIkey}`,
-    {}
-  );
-};
-=======
-import { processResponse } from './api.js';
-
-// Define the request function if not already defined in api.js:
-function request(url, options) {
-    return fetch(url, options).then(processResponse);
-}
-
-export const getWeather = ({ latitude, longitude, APIkey }) => {
-  return request(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=imperial&appid=${APIkey}`, {});
+import { handleServerResponse } from "./Api.js";
+export const getWeather = (latitude, longitude, apiKey) => {
+  return fetch(
+    `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=imperial&appid=${apiKey}`
+  ).then(handleServerResponse);
 };
 
-// (Rest of the weatherApi.js code remains unchanged)
->>>>>>> f6022f653722bbe5faaad76f1f9530987d53f0c3
-
-// (Rest of the weatherApi.js code remains unchanged)
 export const filterWeatherData = (data) => {
   const result = {};
   result.city = data.name;
   result.temp = {
-    F: Math.round(data.main.temp),
+    F: data.main.temp,
     C: Math.round(((data.main.temp - 32) * 5) / 9),
   };
   result.type = getWeatherType(result.temp.F);
+  result.isDay = isDay(data.sys);
   result.condition = data.weather[0].main.toLowerCase();
-  result.isDay = isDay(data.sys, Date.now());
+
   return result;
 };
 
-const isDay = ({ sunrise, sunset }, now) => {
-  return sunrise * 1000 < now && now < sunset * 1000;
+const isDay = ({ sunrise, sunset }) => {
+  return sunrise * 1000 < Date.now() && Date.now() > sunset;
 };
 
-const getWeatherType = (temperature) => {
-<<<<<<< HEAD
-  if (temperature > 80) return "hot";
-  if (temperature > 65) return "warm";
-  if (temperature > 50) return "cool";
-  return "cold";
-=======
-  // Example function logic; replace with your own logic
-  if (temperature > 80) return 'hot';
-  if (temperature > 65) return 'warm';
-  if (temperature > 50) return 'cool';
-  return 'cold';
->>>>>>> f6022f653722bbe5faaad76f1f9530987d53f0c3
+export const getWeatherType = (temperature) => {
+  if (temperature > 82) {
+    return "hot";
+  } else if (temperature >= 70 && temperature < 82) {
+    return "warm";
+  } else if (temperature >= 58 && temperature < 70) {
+    return "chilly";
+  } else {
+    return "cold";
+  }
 };
