@@ -7,13 +7,11 @@ const processResponse = (res) => {
 
   return Promise.reject(`Error: ${res.status}`);
 };
-
 function request(url, options) {
-  return request(url, options).then(processResponse);
+  return fetch(url, options)
+    .then((response) => response.json())
+    .then(processResponse);
 }
-// function request(url, options) {
-//   return fetch(url, options).then(processResponse);
-// }
 
 function getItems() {
   return request(`${baseUrl}/items`, {
