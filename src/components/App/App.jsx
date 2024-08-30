@@ -12,7 +12,8 @@ import { getWeather, filterWeatherData } from "../../utils/weatherApi.js";
 import Footer from "../Footer/Footer";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 import AddItemModal from "../AddItemModal/AddItemModal";
-// import { getItems, addItem, deleteItem } from "../../utils/Api.js";
+import { getItems, addItem, deleteItem } from "../../utils/Api.js";
+// import api from "../../utils/Api.js";
 
 function App() {
   const [weatherData, setWeatherData] = useState({

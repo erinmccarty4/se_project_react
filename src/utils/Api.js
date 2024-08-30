@@ -1,44 +1,42 @@
-const Base_Url = "http://localhost:3001";
+const baseUrl = "http://localhost:3001";
 
-export const handleServerResponse = (res) => {
-  return res.ok ? res.json() : Promise.reject(`Error:${res.status}`);
+const processResponse = (res) => {
+  if (res.ok) {
+    return res.json();
+  }
+
+  return Promise.reject(`Error: ${res.status}`);
 };
 
-const getItemList = () => {
-  return fetch(`${Base_Url}/items`, {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  }).then(handleServerResponse);
-};
+function request(url, options) {
+  return request(url, options).then(processResponse);
+}
+// function request(url, options) {
+//   return fetch(url, options).then(processResponse);
+// }
 
-const addItem = (name, weather, imageUrl) => {
-  return fetch(`${Base_Url}/items`, {
+function getItems() {
+  return request(`${baseUrl}/items`, {
+    headers: { "Content-Type": "application/json" },
+  }).then(processResponse);
+}
+
+function addItem(item) {
+  return request(`${baseUrl}/items`, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      name,
-      weather,
-      imageUrl,
-    }),
-  }).then(handleServerResponse);
-};
 
-const removeItem = (id) => {
-  return fetch(`${Base_Url}/items/${id}`, {
+    headers: { "Content-Type": "application/json" },
+
+    body: JSON.stringify(item),
+  }).then(processResponse);
+}
+
+function deleteItem(id) {
+  return request(`${baseUrl}/items/${id}`, {
     method: "DELETE",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  }).then(handleServerResponse);
-};
 
-const api = {
-  getItemList,
-  addItem,
-  removeItem,
-};
+    headers: { "Content-Type": "application/json" },
+  }).then(processResponse);
+}
 
-export default api;
+export { getItems, addItem, deleteItem };
