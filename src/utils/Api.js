@@ -7,20 +7,15 @@ const processResponse = (res) => {
 
   return Promise.reject(`Error: ${res.status}`);
 };
-function request(url, options) {
-  return fetch(url, options)
-    .then((response) => response.json())
-    .then(processResponse);
-}
 
 function getItems() {
-  return request(`${baseUrl}/items`, {
+  return fetch(`${baseUrl}/items`, {
     headers: { "Content-Type": "application/json" },
   }).then(processResponse);
 }
 
 function addItem(item) {
-  return request(`${baseUrl}/items`, {
+  return fetch(`${baseUrl}/items`, {
     method: "POST",
 
     headers: { "Content-Type": "application/json" },
@@ -30,7 +25,7 @@ function addItem(item) {
 }
 
 function deleteItem(id) {
-  return request(`${baseUrl}/items/${id}`, {
+  return fetch(`${baseUrl}/items/${id}`, {
     method: "DELETE",
 
     headers: { "Content-Type": "application/json" },
