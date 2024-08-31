@@ -125,7 +125,7 @@ function App() {
   return (
     <div className="app">
       <CurrentTemperatureUnitProvider>
-        <ToggleSwitch />
+        {/* <ToggleSwitch /> */}
         <TemperatureDisplay />
         <div className="app__content">
           <Header handleAddClick={handleAddClick} weatherData={weatherData} />

@@ -5,7 +5,12 @@ import ItemCard from "../ItemCard/ItemCard";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext.jsx";
 import { useContext } from "react";
 
-function Main({ weatherData, onCardClick, clothingItems }) {
+function Main({
+  weatherData,
+  onCardClick,
+  clothingItems,
+  CurrentTemperatureUnit,
+}) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
   const temp = weatherData?.temp?.[currentTemperatureUnit] || 999;
 
