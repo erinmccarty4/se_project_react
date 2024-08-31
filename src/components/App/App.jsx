@@ -124,7 +124,7 @@ function App() {
 
   return (
     <div className="app">
-      <currentTemperatureUnitProvider>
+      <CurrentTemperatureUnitProvider>
         <ToggleSwitch />
         <TemperatureDisplay />
         <div className="app__content">
@@ -174,7 +174,7 @@ function App() {
             onDelete={handleDeleteItem}
           />
         )}
-      </currentTemperatureUnitProvider>
+      </CurrentTemperatureUnitProvider>
     </div>
   );
 }
