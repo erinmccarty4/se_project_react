@@ -1,28 +1,18 @@
 import { useEffect, useState } from "react";
-
 import { Routes, Route, BrowserRouter } from "react-router-dom";
-
 import "../App/App.css";
-
 import { coordinates, APIkey } from "../../utils/constants";
-
 import Header from "../Header/Header";
-
 import Main from "../Main/Main";
-
 import Profile from "../Profile/Profile";
-
 import ItemModal from "../ItemModal/ItemModal";
-
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
-
 import Footer from "../Footer/Footer";
-
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
-
 import AddItemModal from "../AddItemModal/AddItemModal";
-
 import { getItems, deleteItem, addItem } from "../../utils/Api";
+// import ToggleSwitch from "./components/ToggleSwitch";
+// import TemperatureDisplay from "./components/TemperatureDisplay";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -128,9 +118,9 @@ function App() {
 
   return (
     <div className="app">
-      <CurrentTemperatureUnitContext.Provider
-        value={{ currentTemperatureUnit, handleToggleSwitchChange }}
-      >
+      <CurrentTemperatureUnitProvider>
+        <ToggleSwitch />
+        <TemperatureDisplay />
         <div className="app__content">
           <Header handleAddClick={handleAddClick} weatherData={weatherData} />
 
@@ -178,7 +168,7 @@ function App() {
             onDelete={handleDeleteItem}
           />
         )}
-      </CurrentTemperatureUnitContext.Provider>
+      </CurrentTemperatureUnitProvider>
     </div>
   );
 }
