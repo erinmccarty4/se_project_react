@@ -1,4 +1,3 @@
-// src/components/TemperatureDisplay.js
 import React, { useContext } from "react";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 

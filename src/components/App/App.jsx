@@ -4,15 +4,18 @@ import "../App/App.css";
 import { coordinates, APIkey } from "../../utils/constants";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
+
 import Profile from "../Profile/Profile";
 import ItemModal from "../ItemModal/ItemModal";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import Footer from "../Footer/Footer";
-import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
+
+import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext.jsx";
+
 import AddItemModal from "../AddItemModal/AddItemModal";
 import { getItems, deleteItem, addItem } from "../../utils/Api";
-// import ToggleSwitch from "./components/ToggleSwitch";
-// import TemperatureDisplay from "./components/TemperatureDisplay";
+import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
+import TemperatureDisplay from "../TemperatureDisplay.jsx/TemperatureDisplay";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -118,7 +121,7 @@ function App() {
 
   return (
     <div className="app">
-      <CurrentTemperatureUnitProvider>
+      <currentTemperatureUnitProvider>
         <ToggleSwitch />
         <TemperatureDisplay />
         <div className="app__content">
@@ -168,7 +171,7 @@ function App() {
             onDelete={handleDeleteItem}
           />
         )}
-      </CurrentTemperatureUnitProvider>
+      </currentTemperatureUnitProvider>
     </div>
   );
 }

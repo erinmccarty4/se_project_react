@@ -1,17 +1,8 @@
-// import React from "react";
-
-// const CurrentTemperatureUnitContext = React.createContext({
-//   CurrentTemperatureUnit: "",
-//   handleToggleSwitchChange: () => {},
-// });
-
-// export default CurrentTemperatureUnitContext;
-
 import React, { createContext, useState } from "react";
 
-export const CurrentTemperatureUnitContext = createContext();
+const CurrentTemperatureUnitContext = createContext();
 
-export const CurrentTemperatureUnitProvider = ({ children }) => {
+const CurrentTemperatureUnitProvider = ({ children }) => {
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
 
   const handleToggleSwitchChange = () => {
@@ -26,3 +17,5 @@ export const CurrentTemperatureUnitProvider = ({ children }) => {
     </CurrentTemperatureUnitContext.Provider>
   );
 };
+
+export { CurrentTemperatureUnitContext, CurrentTemperatureUnitProvider };
