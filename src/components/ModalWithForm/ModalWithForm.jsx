@@ -1,5 +1,6 @@
-import "../ModalWithForm.css";
-import "../AddItemModal.jsx";
+import "./modalWithForm.css";
+
+import "../AddItemModal/AddItemModal.jsx";
 import { Children } from "react";
 
 function ModalWithForm({

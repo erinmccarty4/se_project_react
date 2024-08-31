@@ -1,47 +1,60 @@
 import { useEffect, useState } from "react";
+
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 
 import "../App/App.css";
 
 import { coordinates, APIkey } from "../../utils/constants";
+
 import Header from "../Header/Header";
+
 import Main from "../Main/Main";
+
 import Profile from "../Profile/Profile";
+
 import ItemModal from "../ItemModal/ItemModal";
-import { getWeather, filterWeatherData } from "../../utils/weatherApi.js";
+
+import { getWeather, filterWeatherData } from "../../utils/weatherApi";
+
 import Footer from "../Footer/Footer";
+
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
+
 import AddItemModal from "../AddItemModal/AddItemModal";
-import { getItems, addItem, deleteItem } from "../../utils/Api.js";
-// import api from "../../utils/Api.js";
+
+import { getItems, deleteItem, addItem } from "../../utils/Api";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
     type: "",
+
     temp: { F: 999 },
+
     city: "",
   });
+
   const [activeModal, setActiveModal] = useState("");
+
   const [selectedCard, setSelectedCard] = useState({});
+
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
+
   const [clothingItems, setClothingItems] = useState([]);
 
   const handleCardClick = (card) => {
     setActiveModal("preview");
+
     setSelectedCard(card);
   };
 
-  const handleAddItem = (name, weather, imageUrl, resetInputs) => {
-    setIsLoading(true);
-    api
-      .addItem(name, weather, imageUrl)
+  const onAddItem = (item, resetForm) => {
+    return addItem(item)
       .then((newItem) => {
-        setClothingItems([newItem, ...clothingItems]);
-        onClose();
-        resetInputs();
-        setIsLoading(false);
+        setClothingItems((clothingItems) => [newItem, ...clothingItems]);
+        closeActiveModal();
+        resetForm(); // clear the inputs in `then`
       })
-      .catch((err) => console.log(err));
+      .catch(console.error);
   };
 
   const handleDeleteItem = (id) => {
@@ -50,8 +63,10 @@ function App() {
         const updatedClothingItems = clothingItems.filter(
           (item) => item._id !== id
         );
+
         setClothingItems(updatedClothingItems);
       })
+
       .catch((error) => {
         console.error("Error deleting this item", error);
       });
@@ -65,6 +80,24 @@ function App() {
     setActiveModal("");
   };
 
+  useEffect(() => {
+    if (!activeModal) return; // stop the effect not to add the listener if there is no active modal
+
+    const handleEscClose = (e) => {
+      // define the function inside useEffect not to lose the reference on rerendering
+      if (e.key === "Escape") {
+        handleDeleteItem();
+      }
+    };
+
+    document.addEventListener("keydown", handleEscClose);
+
+    return () => {
+      // don't forget to add a clean up function for removing the listener
+      document.removeEventListener("keydown", handleEscClose);
+    };
+  }, [activeModal]); // watch activeModal here
+
   const handleToggleSwitchChange = () => {
     setCurrentTemperatureUnit(currentTemperatureUnit === "F" ? "C" : "F");
   };
@@ -73,9 +106,12 @@ function App() {
     getWeather(coordinates, APIkey)
       .then((data) => {
         //data is the json response
+
         const filteredData = filterWeatherData(data);
+
         setWeatherData(filteredData);
       })
+
       .catch(console.error);
   }, []);
 
@@ -83,8 +119,10 @@ function App() {
     getItems()
       .then((data) => {
         console.log(data);
+
         setClothingItems(data.reverse());
       })
+
       .catch(console.error);
   }, []);
 
@@ -107,6 +145,7 @@ function App() {
                 />
               }
             />
+
             <Route
               path="/profile"
               element={
@@ -122,6 +161,7 @@ function App() {
 
           <Footer />
         </div>
+
         {activeModal === "add-garment" && (
           <AddItemModal
             handleCloseModal={closeActiveModal}
@@ -129,6 +169,7 @@ function App() {
             onAddItem={onAddItem}
           />
         )}
+
         {activeModal === "preview" && (
           <ItemModal
             activeModal={activeModal}

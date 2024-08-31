@@ -1,15 +1,16 @@
 import React, { useState } from "react";
-// import ModalWithForm from "../ModalWithForm/ModalWithForm";
+
+import ModalWithForm from "../ModalWithForm/ModalWithForm.jsx";
 
 const AddItemModal = ({ handleCloseModal, onAddItem, isOpen }) => {
   const [values, setValues] = useState({ name: "", imageUrl: "", weather: "" });
-
   const handleChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     onAddItem(values, () => {
       setValues({ name: "", imageUrl: "", weather: "" });
     });
@@ -52,6 +53,7 @@ const AddItemModal = ({ handleCloseModal, onAddItem, isOpen }) => {
       </label>
       <fieldset className="modal__radio-buttons">
         <legend className="modal__legend">Select the weather type:</legend>
+
         <label htmlFor="hot" className="modal__label_type_radio">
           {" "}
           <input
@@ -65,6 +67,7 @@ const AddItemModal = ({ handleCloseModal, onAddItem, isOpen }) => {
           />
           Hot
         </label>
+
         <label htmlFor="warm" className="modal__label_type_radio">
           <input
             name="weather"
@@ -77,6 +80,7 @@ const AddItemModal = ({ handleCloseModal, onAddItem, isOpen }) => {
           />
           Warm
         </label>
+
         <label htmlFor="cold" className="modal__label_type_radio">
           <input
             name="weather"

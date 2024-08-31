@@ -17,7 +17,7 @@ const DeleteCardModal = ({
       <div className="modal__overlay" onClick={handleOutsideClick}>
         <div className="modal__container">
           <div className="modal__content">
-            <p className="modal__confirm-title">
+            <p className="modal__title">
               {" "}
               Are you sure you want to delete this item? This action is
               irreversible.
