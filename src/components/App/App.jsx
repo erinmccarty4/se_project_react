@@ -10,12 +10,12 @@ import ItemModal from "../ItemModal/ItemModal";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import Footer from "../Footer/Footer";
 
-import { CurrentTemperatureUnitContext } from "../contexts/CurrentTemperatureUnitContext.jsx";
+import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext.jsx";
 
 import AddItemModal from "../AddItemModal/AddItemModal";
 import { getItems, deleteItem, addItem } from "../../utils/Api";
-import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
-import TemperatureDisplay from "../TemperatureDisplay/TemperatureDisplay";
+import ToggleSwitch from "../ToggleSwitch/ToggleSwitch.jsx";
+import TemperatureDisplay from "../TemperatureDisplay.jsx";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
