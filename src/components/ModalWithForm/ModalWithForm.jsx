@@ -1,4 +1,4 @@
-import "./modalWithForm.css";
+import "./ModalWithForm.css";
 
 import "../AddItemModal/AddItemModal.jsx";
 import { Children } from "react";

@@ -10,12 +10,12 @@ import ItemModal from "../ItemModal/ItemModal";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import Footer from "../Footer/Footer";
 
-import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext.jsx";
+import { CurrentTemperatureUnitContext } from "../contexts/CurrentTemperatureUnitContext.jsx";
 
 import AddItemModal from "../AddItemModal/AddItemModal";
 import { getItems, deleteItem, addItem } from "../../utils/Api";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
-import TemperatureDisplay from "../TemperatureDisplay.jsx/TemperatureDisplay";
+import TemperatureDisplay from "../TemperatureDisplay/TemperatureDisplay";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -121,7 +121,7 @@ function App() {
 
   return (
     <div className="app">
-      <currentTemperatureUnitProvider>
+      <CurrentTemperatureUnitProvider>
         <ToggleSwitch />
         <TemperatureDisplay />
         <div className="app__content">
@@ -171,7 +171,7 @@ function App() {
             onDelete={handleDeleteItem}
           />
         )}
-      </currentTemperatureUnitProvider>
+      </CurrentTemperatureUnitProvider>
     </div>
   );
 }
