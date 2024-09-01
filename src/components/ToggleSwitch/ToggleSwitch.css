@@ -1,7 +1,6 @@
 .toggle__switch {
   display: flex;
   position: relative;
-  align-items: center;
 }
 
 .switch__box {
@@ -22,6 +21,7 @@
   text-align: center;
   cursor: pointer;
   position: absolute;
+  transition: transform 0.2s ease;
 }
 
 .switch__slider-F {
