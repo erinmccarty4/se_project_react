@@ -1,4 +1,4 @@
-import "./deleteItemModal.css";
+import "./DeleteItemModal.css";
 
 const DeleteItemModal = ({
   handleOutsideClick,
