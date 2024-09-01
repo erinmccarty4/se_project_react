@@ -45,17 +45,3 @@
   line-height: 24px;
   margin-bottom: 32px;
 }
-
-.modal__delete-btn {
-  position: relative;
-  font-size: 20px;
-  font-weight: 700;
-  line-height: 24px;
-  text-align: left;
-  color: #ff4d00;
-  border: 0;
-  background-color: #fff;
-  cursor: pointer;
-  padding: 0;
-  font-family: "CabinetGrotesk-Bold", Times, serif;
-}
