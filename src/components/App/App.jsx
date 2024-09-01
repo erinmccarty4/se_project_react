@@ -82,7 +82,7 @@ function App() {
     const handleEscClose = (e) => {
       // define the function inside useEffect not to lose the reference on rerendering
       if (e.key === "Escape") {
-        handleDeleteItem();
+        closeActiveModal();
       }
     };
 
