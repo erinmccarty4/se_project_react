@@ -1,5 +1,3 @@
-import "../blocks/modal.css";
-
 const DeleteCardModal = ({
   handleOutsideClick,
   isOpen,
