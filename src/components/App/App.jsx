@@ -54,18 +54,14 @@ function App() {
   };
 
   const handleDeleteItem = (id) => {
-    return deleteItem(id)
-      .then(() => {
-        const updatedClothingItems = clothingItems.filter(
-          (item) => item._id !== id
-        );
+    return deleteItem(id).then(() => {
+      const updatedClothingItems = clothingItems.filter(
+        (item) => item._id !== id
+      );
 
-        setClothingItems(updatedClothingItems);
-      })
-
-      .catch((error) => {
-        console.error("Error deleting this item", error);
-      });
+      setClothingItems(updatedClothingItems);
+      closeActiveModal();
+    });
   };
 
   const handleAddClick = () => {
