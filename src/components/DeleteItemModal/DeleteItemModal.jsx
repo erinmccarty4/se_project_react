@@ -1,3 +1,5 @@
+import "./deleteItemModal.css";
+
 const DeleteItemModal = ({
   handleOutsideClick,
   isOpen,
