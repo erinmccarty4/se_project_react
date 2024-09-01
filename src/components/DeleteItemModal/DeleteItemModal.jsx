@@ -1,4 +1,4 @@
-const DeleteCardModal = ({
+const DeleteItemModal = ({
   handleOutsideClick,
   isOpen,
   handleDeleteItem,

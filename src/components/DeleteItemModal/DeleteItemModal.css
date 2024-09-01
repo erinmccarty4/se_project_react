@@ -11,6 +11,41 @@
   cursor: pointer;
 }
 
+.modal__confirm-title {
+  font-family: "CabinetGrotesk-Bold", Times, serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  padding: 48px;
+  text-align: center;
+}
+
+.modal__confirm-delete-button {
+  color: #ff4d00;
+  font-family: "CabinetGrotesk-Bold", Times, serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  border: none;
+  background: #ffffff;
+  position: absolute;
+  bottom: 28%;
+  right: 35%;
+  cursor: pointer;
+}
+
+.modal__cancel-button {
+  font-family: "CabinetGrotesk-Bold", Times, serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  border: none;
+  background: #ffffff;
+  position: absolute;
+  right: 42%;
+  cursor: pointer;
+}
+
 @media only screen and (max-width: 405px) {
   .modal .modal__confirm-delete-button {
     color: green !important;
