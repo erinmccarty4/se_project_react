@@ -30,7 +30,6 @@
 }
 
 .modal__caption {
-  font-family: "CabinetGrotesk-Bold", Times, serif;
   margin: 0;
   font-size: 20px;
   font-weight: 700;
@@ -43,5 +42,17 @@
   font-size: 20px;
   font-weight: 700;
   line-height: 24px;
-  margin-bottom: 32px;
+}
+
+.modal__delete-button {
+  position: relative;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+  text-align: right;
+  color: #ff4d00;
+  border: 0;
+  background-color: #fff;
+  cursor: pointer;
+  padding: 0;
 }
