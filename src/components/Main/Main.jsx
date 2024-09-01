@@ -9,7 +9,6 @@ function Main({
   weatherData,
   onCardClick,
   clothingItems,
-  // CurrentTemperatureUnit,
 }) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
   const temp = weatherData?.temp?.[currentTemperatureUnit] || 999;
@@ -20,7 +19,7 @@ function Main({
       <WeatherCard weatherData={weatherData} />
       <section className="cards">
         <p className="cards__text">
-          Today is {temp} &deg; F / You may want to wear:
+          Today is {temp} {currentTemperatureUnit}&deg; You may want to wear:
         </p>
         <ul className="cards__list">
           {clothingItems
