@@ -236,7 +236,7 @@ function App() {
   };
 
   useEffect(() => {
-    getWeather(coordinates, apiKey)
+    getWeather(coordinates, APIkey)
       .then((data) => {
         console.log("weather");
         const filteredData = filterWeatherData(data);
