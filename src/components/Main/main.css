@@ -1,17 +1,17 @@
-/*Main.css*/
+.cards {
+  margin-top: 40px;
+}
+
 .cards__text {
-  font-weight: 700;
-  font-family: "CabinetGrotesk-Bold";
+  font-family: CabinetGrotesk-Bold, Arial, Helvetica, sans-serif;
   font-size: 20px;
-  margin: 40px 0 35px;
+  line-height: 24px;
 }
 
 .cards__list {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  gap: 19px;
-  list-style-type: none;
-  margin-top: 35px;
+  display: grid;
+  gap: 20px;
   padding: 0;
+  margin: 0;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 }
