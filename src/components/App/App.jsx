@@ -12,6 +12,7 @@ import { Routes, Route, useNavigate } from "react-router-dom";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import { coordinates, APIkey } from "../../utils/constants";
 import { getItems, addNewItem, deleteItemById } from "../../utils/Api";
+
 // import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext.jsx";
 import React from "react";
 
