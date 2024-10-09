@@ -6,28 +6,25 @@ const RegisterModal = ({
   activeModal,
   handleRegistration,
   handleLoginClick,
+  onClose,
 }) => {
   const [email, setEmail] = useState("");
   const handleEmailChange = (e) => {
-    console.log(e.target.value);
     setEmail(e.target.value);
   };
 
   const [password, setPassword] = useState("");
   const handlePasswordChange = (e) => {
-    console.log(e.target.value);
     setPassword(e.target.value);
   };
 
   const [name, setName] = useState("");
   const handleNameChange = (e) => {
-    console.log(e.target.value);
     setName(e.target.value);
   };
 
   const [avatar, setAvatar] = useState("");
   const handleAvatarChange = (e) => {
-    console.log(e.target.value);
     setAvatar(e.target.value);
   };
 
@@ -41,13 +38,13 @@ const RegisterModal = ({
       title="Sign Up"
       buttonText="Sign Up"
       isOpen={activeModal === "sign-up"}
-      onClose={closeActiveModal}
+      onClose={onClose}
       onSubmit={handleSubmit}
       showLink={true}
       linkText="or Log In"
       onLinkClick={handleLoginClick}
     >
-      <label htmlFor="email" className="modal__label">
+      <label className="modal__label">
         Email*{" "}
         <input
           type="email"
@@ -59,7 +56,7 @@ const RegisterModal = ({
           onChange={handleEmailChange}
         />
       </label>
-      <label htmlFor="password" className="modal__label">
+      <label className="modal__label">
         Password*{" "}
         <input
           type="password"
@@ -72,7 +69,7 @@ const RegisterModal = ({
           onChange={handlePasswordChange}
         />
       </label>
-      <label htmlFor="name" className="modal__label">
+      <label className="modal__label">
         Name{" "}
         <input
           type="text"
@@ -86,7 +83,7 @@ const RegisterModal = ({
           onChange={handleNameChange}
         />
       </label>
-      <label htmlFor="avatar" className="modal__label">
+      <label className="modal__label">
         Avatar URL{" "}
         <input
           type="url"

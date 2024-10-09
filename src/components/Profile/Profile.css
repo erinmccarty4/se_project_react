@@ -1,19 +1,15 @@
 .profile {
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  @media screen and (max-width: 980px) {
-    .profile {
-      flex-direction: column;
-      background-color: #f3f3f3;
-    }
-  }
-  
-  @media screen and (max-width: 750px) {
-    .profile {
-      margin: -52px 0 0;
-      position: relative;
-      z-index: 1;
-    }
-  }
+  display: flex;
+  width: 100%;
+  background-color: transparent;
+}
+
+.profile__clothing-items {
+  width: 100%;
+  font-size: 20px;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  gap: 21px;
+}

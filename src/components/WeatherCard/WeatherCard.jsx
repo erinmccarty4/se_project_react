@@ -2,41 +2,34 @@ import "./weatherCard.css";
 import { weatherOptions, defaultWeatherOptions } from "../../utils/constants";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext.jsx";
 import { useContext } from "react";
+import clear from "../../assets/day/clear_day.png";
 
 function WeatherCard({ weatherData }) {
-  const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
-  const temp = weatherData?.temp?.[currentTemperatureUnit] || 999;
-
-  // const filteredOptions = weatherOptions.filter((option) => {
-  //   return (
-  //     option.day === weatherData.isDay &&
-  //     option.condition === weatherData.condition
-  //   );
-  // });
-
-  const foundOption = weatherOptions.find((option) => {
+  const weatherOption = weatherOptions.find((item) => {
     return (
-      option.day === weatherData.isDay &&
-      option.condition === weatherData.condition
+      item.day === weatherData.isDay && item.condition === weatherData.condition
     );
   });
 
-  let weatherOption;
+  const link =
+    weatherOption?.url ||
+    (weatherData.isDay
+      ? defaultWeatherOptions.day.url
+      : defaultWeatherOptions.night.url);
 
-  if (foundOption === undefined) {
-    weatherOption = defaultWeatherOptions[weatherData.isDay ? "day" : "night"];
-  } else {
-    weatherOption = foundOption;
-  }
+  const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
+  // const temp = weatherData?.temp?.[currentTemperatureUnit] || 999;
 
   return (
     <section className="weather-card">
       <p className="weather-card__temp">
-        {temp} {currentTemperatureUnit}&deg;
+        {currentTemperatureUnit === "F"
+          ? `${weatherData.temp.F}°F`
+          : `${weatherData.temp.C}°C`}
       </p>
       <img
-        src={weatherOption?.url}
-        alt={weatherOption?.condition}
+        src={link}
+        alt={weatherOption?.condition || "default"}
         className="weather-card__image"
       />
     </section>

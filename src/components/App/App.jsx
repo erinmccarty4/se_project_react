@@ -1,3 +1,6 @@
+import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext.jsx";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext.jsx";
+
 import { useEffect, useState } from "react";
 
 import "./App.css";
@@ -12,8 +15,6 @@ import { Routes, Route, useNavigate } from "react-router-dom";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import { coordinates, APIkey } from "../../utils/constants";
 import { getItems, addNewItem, deleteItemById } from "../../utils/Api";
-
-// import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext.jsx";
 import React from "react";
 
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
@@ -22,16 +23,7 @@ import * as api from "../../utils/Api";
 import { setToken, getToken, removeToken } from "../../contexts/token";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
-import EditProfileModal from "../EditProfileModal/EditProfileModal.jsx";
-// import { CurrentUserContext } from "../../contexts/CurrentUserContext.jsx";
-
-// import {
-//   CurrentTemperatureUnitContext,
-//   CurrentTemperatureUnitProvider,
-// } from "../../contexts/CurrentTemperatureUnitContext.jsx";
-
-import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext.jsx";
-import { CurrentUserContext } from "../../contexts/CurrentUserContext.jsx";
+import EditPofileModal from "../EditProfileModal/EditProfileModal";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -349,7 +341,7 @@ function App() {
             handleLogin={handleLogin}
             handleRegisterClick={handleRegisterClick}
           />
-          <EditProfileModal
+          <EditPofileModal
             activeModal={activeModal}
             closeActiveModal={closeActiveModal}
             handleEditProfile={handleEditProfile}

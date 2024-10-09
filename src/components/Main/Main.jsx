@@ -44,5 +44,4 @@ function Main({
   );
 }
 
-//adding a key above the return made the default clothing items disappear, why though?
 export default Main;

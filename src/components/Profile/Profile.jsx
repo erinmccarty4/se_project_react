@@ -1,22 +1,45 @@
-import "./Profile.css";
 import SideBar from "../SideBar/SideBar";
 import ClothesSection from "../ClothesSection/ClothesSection";
+import "./Profile.css";
 
-function Profile({ onCardClick, clothingItems, handleAddClick, weatherData }) {
+const Profile = ({
+  name,
+  avatar,
+  handleCardClick,
+  handleAddClick,
+  handleEditClick,
+  defaultClothingItems,
+  handleLogOut,
+  setIsLoggedIn,
+  isLoggedIn,
+  onCardLike,
+}) => {
+  console.log("Profile Props - Name: ", name);
+  console.log("Profile Props - Avatar: ", avatar);
+  if (!name || !avatar) {
+    console.log("Missing props - Name or Avatar is undefined");
+  }
+
   return (
     <div className="profile">
       <section className="profile__sidebar">
-        <SideBar weatherData={weatherData} />
+        <SideBar
+          handleEditClick={handleEditClick}
+          setIsLoggedIn={setIsLoggedIn}
+          handleLogOut={handleLogOut}
+        />
       </section>
-      <section className="profile__clothing-Items">
+      <section className="profile__clothing-item">
         <ClothesSection
-          onCardClick={onCardClick}
-          clothingItems={clothingItems}
+          handleCardClick={handleCardClick}
           handleAddClick={handleAddClick}
+          defaultClothingItems={defaultClothingItems}
+          isLoggedIn={isLoggedIn}
+          onCardLike={onCardLike}
         />
       </section>
     </div>
   );
-}
+};
 
 export default Profile;

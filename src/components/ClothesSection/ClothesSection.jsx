@@ -1,38 +1,48 @@
-import "./ClothesSection.css";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext.jsx";
+import React, { useContext } from "react";
 import ItemCard from "../ItemCard/ItemCard";
+import "./ClothesSection.css";
 
 function ClothesSection({
-  onCardClick,
-  clothingItems,
-  onDeleteClick,
+  handleCardClick,
   handleAddClick,
+  defaultClothingItems,
+  isLoggedIn,
+  onCardLike,
 }) {
+  const currentUser = useContext(CurrentUserContext);
+  const userItems = defaultClothingItems?.filter(
+    (item) => item.owner === currentUser?._id
+  );
+  //are the default items breaking here?
   return (
     <div className="clothes-section">
-      <div className="clothes-section__header">
-        <p className="clothes-section__items-title">Your Items</p>
+      <div className="clothes-section__buttons">
+        <p>Your Items</p>
         <button
-          type="button"
-          className="clothes-section__add-card-button"
           onClick={handleAddClick}
+          type="button"
+          className="clothes-section__add-item-btn"
         >
-          + Add new
+          + Add New
         </button>
       </div>
-      <ul className="clothes-section__items">
-        {clothingItems.map((item) => {
-          return (
-            <ItemCard
-              key={item._id}
-              item={item}
-              onCardClick={onCardClick}
-              onDeleteClick={onDeleteClick}
-            />
-          );
-        })}
-      </ul>
+      <div className="break">
+        <ul className="clothes-section__items">
+          {userItems?.map((item) => {
+            return (
+              <ItemCard
+                key={item._id || item.id}
+                item={item}
+                onCardClick={handleCardClick}
+                onCardLike={onCardLike}
+                isLoggedIn={isLoggedIn}
+              />
+            );
+          })}
+        </ul>
+      </div>
     </div>
   );
 }
-
 export default ClothesSection;
