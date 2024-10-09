@@ -183,7 +183,7 @@ function App() {
     const jwt = getToken(); //retrieve the token
     return addNewItem(name, imageUrl, weather, jwt) //pass all 4 values
       .then((item) => {
-        setClothingItems([item.data, ...defaultClothingItems]); //update clothing items
+        setClothingItems([item, ...defaultClothingItems]); //update clothing items
         //resetForm(); //reset, if I want to add this I need to define the form still
         closeActiveModal(); //close
       })
