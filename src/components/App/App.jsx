@@ -202,7 +202,7 @@ function App() {
           .addCardLike(id, jwt)
           .then((updatedCard) => {
             const updatedDefaultClothingItems = defaultClothingItems?.map(
-              (item) => (item._id === id ? updatedCard.data : item)
+              (item) => (item._id === id ? updatedCard : item)
             );
             setClothingItems(updatedDefaultClothingItems);
           })
@@ -213,7 +213,7 @@ function App() {
           .removeCardLike(id, jwt)
           .then((updatedCard) => {
             const updatedDefaultClothingItems = defaultClothingItems.map(
-              (item) => (item._id === id ? updatedCard.data : item)
+              (item) => (item._id === id ? updatedCard : item)
             );
             setClothingItems(updatedDefaultClothingItems);
           })
