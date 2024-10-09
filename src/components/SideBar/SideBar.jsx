@@ -9,7 +9,7 @@ function SideBar({ weatherData }) {
   return (
     <div className="sidebar">
       <p className="sidebar__date-time">
-        {currentDate}, {weatherData.city}
+        {currentDate}, {weatherData?.city}
       </p>
       <img className="sidebar__avatar" src={avatar} alt="Terrence Tegegne" />
       <p className="sidebar__username">Erin McCarty</p>
