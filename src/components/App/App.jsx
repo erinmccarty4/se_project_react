@@ -142,7 +142,7 @@ function App() {
       .getUserInfo(jwt)
       .then((res) => {
         setIsLoggedIn(true);
-        setCurrentUser(res);
+        setCurrentUser(res.message);
       })
       .catch(console.error);
   }, [isLoggedIn]);
