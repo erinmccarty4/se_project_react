@@ -1,23 +1,26 @@
 import "./SideBar.css";
 import avatar from "../../assets/avatar.png";
+import { useContext } from "react";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext.jsx";
 
-function SideBar({ weatherData }) {
-  const currentDate = new Date().toLocaleString("default", {
-    month: "long",
-    day: "numeric",
-  });
+function SideBar({ handleEditClick, handleLogOut }) {
+  const currentUser = useContext(CurrentUserContext);
+
   return (
     <div className="sidebar">
-      <p className="sidebar__date-time">
-        {currentDate}, {weatherData?.city}
-      </p>
-      <img className="sidebar__avatar" src={avatar} alt="Terrence Tegegne" />
-      <p className="sidebar__username">Erin McCarty</p>
-      <button type="button" className="sidebar__change-profile-info">
-        Change profile data
+      <div className="sidebar__info">
+        <img
+          className="sidebar__avatar"
+          src={currentUser?.avatar}
+          alt={currentUser?.name}
+        />
+        <p className="sidebar__username">{currentUser.name}</p>
+      </div>
+      <button className="sidebar__edit" onClick={handleEditClick}>
+        Update Profile Data
       </button>
-      <button type="button" className="sidebar__log-out">
-        Log out
+      <button onClick={handleLogOut} className="sidebar__logout">
+        Log Out
       </button>
     </div>
   );
